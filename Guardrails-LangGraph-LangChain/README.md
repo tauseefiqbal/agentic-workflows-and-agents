@@ -6,26 +6,24 @@ A production-ready **Customer Support AI Agent** with multi-layer safety guardra
 
 ## Table of Contents
 
-- [Guardrails for LangChain \& LangGraph](#guardrails-for-langchain--langgraph)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Tech Stack](#tech-stack)
-  - [GitHub Code Repository](#github-code-repository)
-  - [How to Use App for Regular User](#how-to-use-app-for-regular-user)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [Configuration](#configuration)
-    - [Running the Agent](#running-the-agent)
-  - [Project Structure](#project-structure)
-  - [Architecture](#architecture)
-    - [LangGraph Workflow (Recommended)](#langgraph-workflow-recommended)
-    - [LangChain Pipeline (Simple)](#langchain-pipeline-simple)
-  - [Guardrail Layers](#guardrail-layers)
-    - [Input Guardrails](#input-guardrails)
-    - [Output Guardrails](#output-guardrails)
-  - [Allowed Topics](#allowed-topics)
-  - [Example Test Cases](#example-test-cases)
-  - [License](#license)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [GitHub Code Repository](#github-code-repository)
+- [How to Use App](#how-to-use-app)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Running the Agent](#running-the-agent)
+- [Project Structure](#project-structure)
+- [Architecture](#architecture)
+  - [LangGraph Workflow (Recommended)](#langgraph-workflow-recommended)
+  - [LangChain Pipeline (Simple)](#langchain-pipeline-simple)
+- [Guardrail Layers](#guardrail-layers)
+  - [Input Guardrails](#input-guardrails)
+  - [Output Guardrails](#output-guardrails)
+- [Allowed Topics](#allowed-topics)
+- [Example Test Cases](#example-test-cases)
+- [License](#license)
 
 ---
 
@@ -69,7 +67,7 @@ git clone https://github.com/tauseefiqbal/agentic-workflows-and-agents.git
 
 ---
 
-## How to Use App for Regular User
+## How to Use App
 
 ### Prerequisites
 
