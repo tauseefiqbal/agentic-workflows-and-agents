@@ -1,0 +1,24 @@
+functions = [
+    {
+      "name": "get_population",
+      "description": "Retrieve the population of a specified country.",
+      "parameters": {
+          "type": "object",
+          "properties": {
+              "country": {"type": "string", "description": "Name of the country"}
+          },
+          "required": ["country"]
+      }
+    },
+    {
+      "name": "get_wikipedia_summary",
+      "description": "Fetch a short Wikipedia summary for a given topic.",
+      "parameters": {
+          "type": "object",
+          "properties": {
+              "topic": {"type": "string", "description": "Topic to summarize (e.g., country name)"}
+          },
+          "required": ["topic"]
+      }
+    }
+]
