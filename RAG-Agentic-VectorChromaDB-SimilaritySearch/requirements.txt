@@ -1,0 +1,11 @@
+smolagents
+python-dotenv
+langchain-chroma
+langchain-huggingface
+langchain-community
+langchain-text-splitters
+pypdf
+streamlit
+sentence-transformers
+chromadb
+ingest_pdfs.py
