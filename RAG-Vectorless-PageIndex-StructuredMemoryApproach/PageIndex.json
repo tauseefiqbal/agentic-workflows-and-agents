@@ -1,0 +1,19 @@
+{
+  "title": "Google Bigtable Paper",
+  "node_id": "0001",
+  "summary": "Introduction to Bigtable architecture",
+  "nodes": [
+    {
+      "title": "Data Model",
+      "node_id": "0002",
+      "summary": "Rows, columns, timestamps",
+      "nodes": [...]
+    },
+    {
+      "title": "Architecture",
+      "node_id": "0003",
+      "summary": "Master, tablet servers, Chubby",
+      "nodes": [...]
+    }
+  ]
+}

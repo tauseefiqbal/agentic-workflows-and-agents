@@ -1,0 +1,11 @@
+Question
+   ↓
+[Step 1] Analyze Node      ← LLM evaluates relevance and decides next action
+   ↓
+[Step 2] Route Decision    ← Descend into children, retrieve content, or backtrack
+   ↓
+[Step 3] Retrieve Content  ← Extract full text from relevant nodes
+   ↓
+[Step 4] Generate Answer   ← LLM synthesizes final answer with sources
+   ↓
+Answer + Path + Confidence + Sources    
