@@ -1,0 +1,8 @@
+sentence-transformers
+langchain-text-splitters
+pydantic
+pydantic-ai
+python-dotenv
+rich
+graphiti-core
+scikit-learn
