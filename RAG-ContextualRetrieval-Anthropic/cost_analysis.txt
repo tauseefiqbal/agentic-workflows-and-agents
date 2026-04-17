@@ -1,0 +1,39 @@
+# Assumptions:
+#   - 1000 pages = 500,000 words = 625,000 tokens
+#   - Average document: 625 tokens
+#   - Chunks per document: 50 (avg)
+#   - Total chunks: 50,000
+#
+# Context generation (Claude Sonnet 4.5):
+#   Without caching:
+#     Input: 50 chunks x 625 tokens/doc = 31,250 tokens per doc
+#     Cost per doc: $0.094
+#     Total for 1000 docs: $94
+#
+#   With prompt caching (after first chunk):
+#     First chunk: 625 tokens write ($0.0023)
+#     Next 49 chunks: 625 tokens read x 49 = 30,625 cached reads ($0.009)
+#     Total per doc: $0.012
+#     Total for 1000 docs: $12
+#
+#   Savings: $82 (87% reduction!)
+#
+# Embeddings (Voyage AI):
+#   50,000 chunks x 1000 tokens avg = 50M tokens
+#   Cost: $0.50 (voyage-2 pricing)
+#
+# BM25 indexing:
+#   Free (local computation)
+#
+# Reranking (Cohere):
+#   Assuming 100 queries
+#   150 chunks x 100 queries = 15,000 reranks
+#   Cost: ~$3
+#
+# Total indexing cost: $15.50 (with caching)
+# Cost per query: $0.03
+#
+# vs Traditional RAG without contextual retrieval:
+#   Indexing: $0.50 (just embeddings)
+#   But: 67% higher retrieval failure rate
+#   Result: More queries needed, lower accuracy
