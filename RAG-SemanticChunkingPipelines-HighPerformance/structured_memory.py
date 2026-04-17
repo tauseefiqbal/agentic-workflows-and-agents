@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
@@ -35,7 +36,7 @@ class ShortTermMemory:
         entry = MemoryEntry(fact=fact, source=source, category=category)
         self._entries.append(entry)
         if len(self._entries) > self._limit:
-            self._entries = self._entries[-self._limit:]
+                self._entries = self._entries[-self._limit:]
 
     def search(self, query: str, limit: int = 5) -> List[MemorySearchResult]:
         query_lower = query.lower()
