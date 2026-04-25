@@ -692,7 +692,7 @@ async def main() -> None:
         print("   - Index name: vector_index")
         print("   - Collection: chunks")
         print("   - Field: embedding")
-        print("   - Dimensions: 1536 (for text-embedding-3-small)")
+        print("   - Dimensions: 1536 (for text-embedding-3-small) / 3072 (for text-embedding-3-large)")
         print()
         print("2. Create text search index in Atlas UI:")
         print("   - Index name: text_index")

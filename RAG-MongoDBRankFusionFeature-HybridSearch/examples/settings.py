@@ -75,12 +75,12 @@ class Settings(BaseSettings):
     
     # Embedding Configuration
     embedding_model: str = Field(
-        default="text-embedding-3-small",
+        default="text-embedding-3-large",
         description="OpenAI embedding model"
     )
     
     embedding_dimension: int = Field(
-        default=1536,
+        default=3072,
         description="Embedding vector dimension"
     )
 

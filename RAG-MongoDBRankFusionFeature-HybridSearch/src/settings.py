@@ -63,7 +63,7 @@ class Settings(BaseSettings):
     embedding_api_key: str = Field(..., description="API key for embedding provider")
 
     embedding_model: str = Field(
-        default="text-embedding-3-small", description="Embedding model to use"
+        default="text-embedding-3-large", description="Embedding model to use"
     )
 
     embedding_base_url: Optional[str] = Field(
@@ -71,8 +71,8 @@ class Settings(BaseSettings):
     )
 
     embedding_dimension: int = Field(
-        default=1536,
-        description="Embedding vector dimension (1536 for text-embedding-3-small)",
+        default=3072,
+        description="Embedding vector dimension (1536 for text-embedding-3-small, 3072 for text-embedding-3-large)",
     )
 
     # Search Configuration

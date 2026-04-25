@@ -41,7 +41,7 @@ An **Agentic RAG (Retrieval-Augmented Generation)** system powered by **MongoDB 
 - ✅ **Agentic RAG with Pydantic AI** — An LLM-powered agent that decides when and how to search the knowledge base, with tool-calling and multi-turn conversation support
 - ✅ **Multi-Format Document Ingestion** — Processes Markdown, PDF, DOCX, and audio files (MP3 via OpenAI Whisper transcription) through a unified pipeline
 - ✅ **Docling HybridChunker** — Token-aware, structure-preserving chunking that respects headings, paragraphs, tables, and code blocks for higher-quality retrieval
-- ✅ **OpenAI Embeddings** — Generates vector embeddings with `text-embedding-3-small` (1536 dimensions) for semantic similarity search
+- ✅ **OpenAI Embeddings** — Generates vector embeddings with `text-embedding-3-large` (3072 dimensions) for semantic similarity search
 - ✅ **MongoDB Atlas Vector Search** — Stores and queries embeddings using Atlas's native `$vectorSearch` aggregation stage with cosine similarity
 - ✅ **MongoDB Atlas Full-Text Search** — Keyword and fuzzy matching via `$search` with the Lucene standard analyzer
 - ✅ **Streaming Conversational CLI** — Real-time streamed responses with Rich terminal UI, tool-call visibility, and multi-turn message history
@@ -59,7 +59,7 @@ An **Agentic RAG (Retrieval-Augmented Generation)** system powered by **MongoDB 
 |---|---|
 | **Agent Framework** | [Pydantic AI](https://ai.pydantic.dev/) with AG-UI support |
 | **LLM** | OpenAI GPT-4o-mini (configurable — any OpenAI-compatible API) |
-| **Embeddings** | OpenAI `text-embedding-3-small` (1536 dimensions) |
+| **Embeddings** | OpenAI `text-embedding-3-large` (3072 dimensions) |
 | **Vector Database** | [MongoDB Atlas](https://www.mongodb.com/atlas) with Vector Search |
 | **Full-Text Search** | MongoDB Atlas Search (Lucene-based) |
 | **Rank Fusion** | Reciprocal Rank Fusion (RRF, k=60) |
@@ -142,7 +142,7 @@ LLM_BASE_URL=https://api.openai.com/v1
 # Embedding Provider Configuration
 EMBEDDING_PROVIDER=openai
 EMBEDDING_API_KEY=your_openai_api_key
-EMBEDDING_MODEL=text-embedding-3-small
+EMBEDDING_MODEL=text-embedding-3-large
 EMBEDDING_BASE_URL=https://api.openai.com/v1
 
 # Search Configuration
@@ -173,7 +173,7 @@ This will:
 - Convert documents to a unified format via Docling
 - Transcribe audio files via OpenAI Whisper
 - Chunk documents using Docling HybridChunker (token-aware)
-- Generate embeddings with OpenAI `text-embedding-3-small`
+- Generate embeddings with OpenAI `text-embedding-3-large`
 - Store documents and chunks in MongoDB Atlas
 
 #### 2. Create Search Indexes
@@ -293,7 +293,7 @@ documents/
 1. **Document Conversion** — Docling converts PDF, DOCX, and Markdown into a unified `DoclingDocument` format
 2. **Audio Transcription** — OpenAI Whisper transcribes MP3 audio files to text
 3. **Chunking** — Docling HybridChunker splits documents into token-aware chunks that respect document structure
-4. **Embedding** — OpenAI `text-embedding-3-small` generates 1536-dimensional vectors for each chunk
+4. **Embedding** — OpenAI `text-embedding-3-large` generates 3072-dimensional vectors for each chunk
 5. **Storage** — Documents go into the `documents` collection; chunks with embeddings go into the `chunks` collection
 
 ---
@@ -314,7 +314,7 @@ documents/
 | `LLM_BASE_URL` | No | `https://openrouter.ai/api/v1` | LLM API base URL |
 | `EMBEDDING_PROVIDER` | No | `openai` | Embedding provider |
 | `EMBEDDING_API_KEY` | Yes | — | API key for embeddings |
-| `EMBEDDING_MODEL` | No | `text-embedding-3-small` | Embedding model |
+| `EMBEDDING_MODEL` | No | `text-embedding-3-large` | Embedding model |
 | `EMBEDDING_BASE_URL` | No | `https://api.openai.com/v1` | Embedding API base URL |
 | `DEFAULT_MATCH_COUNT` | No | `10` | Default search results count |
 | `MAX_MATCH_COUNT` | No | `50` | Maximum search results |

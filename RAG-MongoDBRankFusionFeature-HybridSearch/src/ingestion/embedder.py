@@ -46,7 +46,6 @@ class EmbeddingGenerator:
 
         # Model-specific configurations
         self.model_configs = {
-            "text-embedding-3-small": {"dimensions": 1536, "max_tokens": 8191},
             "text-embedding-3-large": {"dimensions": 3072, "max_tokens": 8191},
             "text-embedding-ada-002": {"dimensions": 1536, "max_tokens": 8191}
         }

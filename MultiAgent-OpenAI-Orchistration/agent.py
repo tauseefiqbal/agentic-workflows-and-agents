@@ -6,10 +6,14 @@ from dotenv import load_dotenv
 load_dotenv()
 from agents import Agent, Runner, function_tool, trace
 
+# Quiet down noisy HTTP request logs from the OpenAI/httpx client
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("openai").setLevel(logging.WARNING)
+
 # Historical research specialist
 history_agent = Agent(
     name="HistoryAgent",
-    model="gpt-4",
+    model="gpt-4.1",
     instructions=(
         "You are a historical research agent with expertise in Victorian London and Charles Dickens. "
         "You receive queries about Dickens's life and Victorian era context, and you provide factual details and references. "
@@ -21,7 +25,7 @@ history_agent = Agent(
 # Fashion and etiquette specialist  
 attire_agent = Agent(
     name="AttireAgent",
-    model="gpt-4",
+    model="gpt-4.1",
     instructions=(
         "You are an expert on Victorian-era attire and etiquette. "
         "Your task is to help a time-traveler blend in. "
@@ -33,7 +37,7 @@ attire_agent = Agent(
 # Timeline and scheduling specialist
 schedule_agent = Agent(
     name="ScheduleAgent", 
-    model="gpt-4",
+    model="gpt-4.1",
     instructions=(
         "You are a scheduling agent specialized in historical timelines. "
         "Given context about Charles Dickens and Victorian London, determine an ideal date, location, and event for meeting Dickens. "
@@ -44,7 +48,7 @@ schedule_agent = Agent(
 
 planner_agent = Agent(
     name="TimeTravelPlanner",
-    model="gpt-4", 
+    model="gpt-4.1", 
     instructions=(
         "You are a planning agent helping a user prepare a time-travel trip to Victorian London to meet Charles Dickens.\n"
         "Break the task into steps and use the specialized agents for each subtask:\n"

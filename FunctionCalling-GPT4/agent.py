@@ -62,7 +62,7 @@ messages = [
 # Loop: let the model call tools until it produces a final text answer
 while True:
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4.1",
         messages=messages,
         tools=tools,
         tool_choice="auto"
