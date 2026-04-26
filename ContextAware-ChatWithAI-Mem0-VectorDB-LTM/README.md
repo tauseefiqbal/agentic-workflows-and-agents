@@ -30,7 +30,8 @@ A context-aware AI chatbot that leverages **Mem0** for memory management and **Q
 - ✅ **Vector Similarity Search** — Finds the most relevant memories using embedding-based semantic search
 - ✅ **On-Disk Vector Storage** — Persists memory data locally via Qdrant so conversations survive restarts
 - ✅ **OpenAI GPT-4o-mini Integration** — Uses the latest cost-efficient OpenAI model for high-quality responses
-- ✅ **Simple CLI Interface** — Interactive terminal-based chat loop with easy exit command
+- ✅ **Gradio Web UI** — Browser-based chat interface powered by `gr.ChatInterface` for an interactive experience
+- ✅ **Optional CLI Mode** — Interactive terminal-based chat loop also available via `main()`
 - ✅ **Automatic Memory Saving** — Every user–assistant exchange is automatically stored for future recall
 - ✅ **Configurable & Extensible** — Easy to swap models, vector stores, or add new features
 - ✅ **Environment Variable Management** — Secure API key handling via `.env` file
@@ -45,6 +46,7 @@ A context-aware AI chatbot that leverages **Mem0** for memory management and **Q
 | **OpenAI API (GPT-4o-mini)** | LLM for generating AI responses |
 | **Mem0** | Memory layer for storing and retrieving conversation memories |
 | **Qdrant** | Vector database for embedding-based similarity search |
+| **Gradio** | Web-based chat UI (`gr.ChatInterface`) |
 | **dotenv** | Environment variable management |
 
 ---
@@ -104,18 +106,25 @@ A context-aware AI chatbot that leverages **Mem0** for memory management and **Q
 
 ### Running the App
 
+Launch the Gradio web UI:
+
 ```bash
 python agent.py
 ```
 
-You will see:
+You will see output similar to:
 
 ```
-Chat with AI (type 'exit' to quit)
-You:
+* Running on local URL:  http://127.0.0.1:7860
 ```
 
-Type your message and press Enter. The AI will respond with context from previous conversations. Type `exit` to quit.
+Open the URL shown in your terminal in a browser. A chat window labeled **"Chat with AI"** will appear — type your message and press Enter to chat. Each exchange is automatically stored as long-term memory and reused as context in future turns.
+
+> **Tip:** Relevant memories retrieved for each query are also printed to the terminal for visibility/debugging.
+
+#### CLI Mode (optional)
+
+The original terminal chat loop is still available via the `main()` function in `agent.py` if you prefer a CLI experience — call it directly instead of launching the Gradio interface.
 
 ---
 

@@ -86,6 +86,18 @@ def main():
 
         chat_with_memories(user_input)
 
+#Chat UI
+import gradio as gr
+
+
+def chat(message, history):
+    try:
+        return chat_with_memories(message)
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return f"ERROR: {type(e).__name__}: {e}"
+
 
 if __name__ == "__main__":
-    main()
+    gr.ChatInterface(fn=chat, title="Chat with AI").launch()
