@@ -1,0 +1,7 @@
+openai
+langgraph
+pydantic
+ddgs
+wikipedia
+requests
+python-dotenv
