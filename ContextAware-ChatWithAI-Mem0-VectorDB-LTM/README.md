@@ -16,6 +16,12 @@ A context-aware AI chatbot that leverages **Mem0** for memory management and **Q
     - [Installation](#installation)
     - [Configuration](#configuration)
     - [Running the App](#running-the-app)
+      - [CLI Mode (optional)](#cli-mode-optional)
+  - [Graphical User Interface (GUI)](#graphical-user-interface-gui)
+    - [Launching the GUI](#launching-the-gui)
+    - [Using the Chat UI](#using-the-chat-ui)
+    - [Sharing the GUI (optional)](#sharing-the-gui-optional)
+    - [Stopping the GUI](#stopping-the-gui)
   - [Project Structure](#project-structure)
   - [How It Works](#how-it-works)
   - [License](#license)
@@ -128,6 +134,49 @@ The original terminal chat loop is still available via the `main()` function in 
 
 ---
 
+## Graphical User Interface (GUI)
+
+The app ships with a browser-based chat GUI built on **[Gradio](https://www.gradio.app/)** using `gr.ChatInterface`, giving you a clean, ChatGPT-style experience out of the box.
+
+### Launching the GUI
+
+From the project root, with your virtual environment activated:
+
+```bash
+python agent.py
+```
+
+Gradio prints a local URL such as:
+
+```
+* Running on local URL:  http://127.0.0.1:7860
+```
+
+Open it in any modern browser (Chrome, Edge, Firefox, Safari).
+
+### Using the Chat UI
+
+- **Title bar:** *Chat with AI*
+- **Message box:** Type your question and press **Enter** (or click **Submit**).
+- **Streaming responses:** Replies appear in the chat window; token-by-token streaming is also visible in the terminal.
+- **Conversation history:** Previous turns in the current session are shown in the chat panel above the input box.
+- **Long-term memory:** Each user–assistant exchange is automatically embedded and stored in Qdrant via Mem0, so the assistant remembers facts across sessions — even after restarting the app.
+- **Memory debug view:** The retrieved relevant memories for every query are printed in the terminal where you launched `agent.py`, making it easy to see what context was injected.
+
+### Sharing the GUI (optional)
+
+To expose a temporary public link (useful for demos), edit the launch call in `agent.py`:
+
+```python
+gr.ChatInterface(fn=chat, title="Chat with AI").launch(share=True)
+```
+
+### Stopping the GUI
+
+Press `Ctrl + C` in the terminal where the app is running.
+
+---
+
 ## Project Structure
 
 ```
@@ -142,7 +191,7 @@ The original terminal chat loop is still available via the `main()` function in 
 
 ## How It Works
 
-1. **User sends a message** via the CLI.
+1. **User sends a message** via the Gradio web UI (or optional CLI).
 2. **Memory search** — Mem0 queries Qdrant for the top 3 most relevant past memories using vector similarity.
 3. **Prompt construction** — Retrieved memories are injected into the system prompt as context.
 4. **LLM response** — OpenAI GPT-4o-mini generates a streamed response informed by both the query and past memories.
