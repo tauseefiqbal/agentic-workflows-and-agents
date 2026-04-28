@@ -9,7 +9,6 @@ def get_wikipedia_summary(topic: str) -> str:
     return "France, officially the French Republic, is a country primarily located in Western Europe..."  # etc.
 
 
-
 import json
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -98,15 +97,12 @@ while True:
         print(message.content)
         break
 
-
 # User query (asking for two things)
 # --> [get_population: Country -> Number] 
 # --> (intermediate result: population as Number) 
 # --> [get_wikipedia_summary: Topic -> Text] 
 # --> (intermediate result: summary Text)
 # --> (final answer composed using both Number and Text)
-
-
 
 def translate(text: str, language: str) -> str:
     """Translate the given text into the target language."""
