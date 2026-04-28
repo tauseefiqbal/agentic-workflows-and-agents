@@ -14,11 +14,9 @@ from pathlib import Path
 
 YOUTUBE_TRANSCRIPT_MAX_CHARS = 80_000
 
-
 def extract_youtube_id(url: str) -> str | None:
     match = re.search(r"(?:v=|youtu\.be/|/embed/|/shorts/)([a-zA-Z0-9_-]{11})", url)
     return match.group(1) if match else None
-
 
 def get_youtube_transcript(url: str, max_chars: int = YOUTUBE_TRANSCRIPT_MAX_CHARS) -> tuple[str, bool]:
     """Fetch YouTube transcript text. Returns (text, was_truncated)."""
