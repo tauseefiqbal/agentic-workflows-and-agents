@@ -1,5 +1,4 @@
-# The Old Way - Good Luck Debugging This
-def draft_and_revise(ticket):
+wdef draft_and_revise(ticket):
     draft = draft_initial_response(ticket)
  
     for i in range(MAX_REVISIONS):
