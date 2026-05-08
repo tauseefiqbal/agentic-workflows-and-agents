@@ -6,22 +6,24 @@ A Streamlit app that lets you ask questions about **images, videos, PDFs, and Yo
 
 ## Table of Contents
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-  - [Languages & Runtime](#languages--runtime)
-  - [Core Libraries](#core-libraries)
-  - [Models](#models)
-- [GitHub Code Repository](#github-code-repository)
-- [How to Use App](#how-to-use-app)
-  - [1. Clone the Repository](#1-clone-the-repository)
-  - [2. Install Dependencies](#2-install-dependencies)
-  - [3. Get a Gemini API Key](#3-get-a-gemini-api-key)
-  - [4. Run the App](#4-run-the-app)
-  - [5. Analyze Media](#5-analyze-media)
-- [Project Structure](#project-structure)
-- [Requirements](#requirements)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
+- [Multimodal Reasoning Agent](#multimodal-reasoning-agent)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Tech Stack](#tech-stack)
+    - [Languages \& Runtime](#languages--runtime)
+    - [Core Libraries](#core-libraries)
+    - [Models](#models)
+  - [GitHub Code Repository](#github-code-repository)
+  - [How to Use App](#how-to-use-app)
+    - [1. Clone the Repository](#1-clone-the-repository)
+    - [2. Install Dependencies](#2-install-dependencies)
+    - [3. Get a Gemini API Key](#3-get-a-gemini-api-key)
+    - [4. Run the App](#4-run-the-app)
+    - [5. Analyze Media](#5-analyze-media)
+  - [Project Structure](#project-structure)
+  - [Requirements](#requirements)
+  - [Troubleshooting](#troubleshooting)
+  - [License](#license)
 
 ---
 
@@ -94,7 +96,7 @@ python -m pip install -r requirements.txt
 On Windows (PowerShell):
 
 ```powershell
-python -m streamlit run multimodal_reasoning_agent.py
+
 ```
 
 On macOS / Linux:

@@ -1,7 +1,7 @@
 import streamlit as st
 from agno.agent import Agent
 from agno.run.agent import RunOutput
-from agno.media import Image, Video
+from agno.media import Image, Video, Audio
 from agno.models.google import Gemini
 import google.generativeai as genai
 import fitz  # PyMuPDF
@@ -60,7 +60,14 @@ def _get_extension(filename: str) -> str:
 
 IMAGE_EXTS = {"jpg", "jpeg", "png"}
 VIDEO_EXTS = {"mp4", "mov", "avi"}
+AUDIO_EXTS = {"mp3", "wav", "ogg"}
 PDF_EXTS = {"pdf"}
+
+AUDIO_MIME_TYPES = {
+    "mp3": "audio/mp3",
+    "wav": "audio/wav",
+    "ogg": "audio/ogg",
+}
 
 # Cap PDF text passed to the model to avoid huge prompts.
 PDF_MAX_CHARS = 80_000
@@ -89,7 +96,7 @@ def extract_pdf_text(pdf_path: str, max_chars: int = PDF_MAX_CHARS) -> tuple[str
 
 def media_tab(agent: Agent) -> None:
     st.write(
-        "Provide a **YouTube URL** _or_ upload an **image**, **video**, or **PDF**, "
+        "Provide a **YouTube URL** _or_ upload an **image**, **video**, **audio**, or **PDF**, "
         "then ask a reasoning-based question. The AI Agent will analyze the input "
         "and respond — for videos it can also combine the analysis with web research."
     )
@@ -116,8 +123,8 @@ def media_tab(agent: Agent) -> None:
         st.warning("Please enter a YouTube URL before clicking Submit.")
 
     uploaded_file = st.file_uploader(
-        "Upload Image, Video, or PDF",
-        type=sorted(IMAGE_EXTS | VIDEO_EXTS | PDF_EXTS),
+        "Upload Image, Video, Audio, or PDF",
+        type=sorted(IMAGE_EXTS | VIDEO_EXTS | AUDIO_EXTS | PDF_EXTS),
         key="media_uploader",
     )
 
@@ -206,9 +213,10 @@ def media_tab(agent: Agent) -> None:
     ext = _get_extension(uploaded_file.name)
     is_image = ext in IMAGE_EXTS
     is_video = ext in VIDEO_EXTS
+    is_audio = ext in AUDIO_EXTS
     is_pdf = ext in PDF_EXTS
 
-    if not (is_image or is_video or is_pdf):
+    if not (is_image or is_video or is_audio or is_pdf):
         st.error(f"Unsupported file type: .{ext}")
         return
 
@@ -241,6 +249,17 @@ def media_tab(agent: Agent) -> None:
                 key="media_task",
             )
             button_label = "Analyze & Research"
+        elif is_audio:
+            st.audio(temp_path)
+            task_input = st.text_area(
+                "Ask a question about this audio:",
+                placeholder=(
+                    "e.g. Transcribe this audio, summarize the conversation, or identify "
+                    "the speakers' main points."
+                ),
+                key="media_task",
+            )
+            button_label = "Analyze Audio"
         else:  # PDF
             with st.spinner("Extracting PDF text..."):
                 pdf_text, page_count, truncated = extract_pdf_text(temp_path)
@@ -267,6 +286,8 @@ def media_tab(agent: Agent) -> None:
                     spinner_msg = "AI is thinking... 🤖"
                 elif is_video:
                     spinner_msg = "Processing video and researching..."
+                elif is_audio:
+                    spinner_msg = "Listening to audio and reasoning..."
                 else:
                     spinner_msg = "Reading PDF and reasoning..."
                 with st.spinner(spinner_msg):
@@ -284,6 +305,21 @@ def media_tab(agent: Agent) -> None:
                             """
                             response = agent.run(
                                 prompt, videos=[Video(filepath=temp_path)]
+                            )
+                        elif is_audio:
+                            with open(temp_path, "rb") as audio_file:
+                                audio_bytes = audio_file.read()
+                            mime_type = AUDIO_MIME_TYPES.get(ext, f"audio/{ext}")
+                            prompt = (
+                                "You are an expert audio analyst. Listen to the provided audio "
+                                "and answer the user's question. If helpful, include a brief "
+                                "transcription or reference timestamps. If the answer isn't in "
+                                "the audio, say so.\n\n"
+                                f"Question: {task_input}"
+                            )
+                            response = agent.run(
+                                prompt,
+                                audio=[Audio(content=audio_bytes, mime_type=mime_type)],
                             )
                         else:  # PDF
                             prompt = (
